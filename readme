@@ -1,0 +1,8 @@
+Version: 1.0
+//Index Page
+_milestones are reached: 
+    .progress-item => aria-active="true"
+    .btn-reward => .active
+
+_milestones are reached > 5:
+    .progress-space => .over

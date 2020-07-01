@@ -1,60 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-<body>
+  <body>
     <div class="container">
-        <div class="policy-header">Commission Policy</div>
-        <div class="policy-wrapper">
-            <div class="margin-bottom-base">
-                <div class="title">LEVEL 1</div>
-                <div>Get <span class="rate-text">0.8%</span> directly on each order of the trading F1</div>
+      <div class="menu-header">
+        <div class="menu-item">REFERRAL</div>
+      </div>
+      <div class="policy-header">Commission Policy</div>
+      <div class="text-center">
+        <button class="btn-policy btn-trader">Trader</button>
+        <button class="btn-policy btn-mentor">Mentor</button>
+      </div>
+      <div class="policy-container">
+        <div class="policy-wrapper policy-trader">
+          <div class="margin-bottom-base">
+            <div class="title">LEVEL 1</div>
+            <div>
+              Get <span class="rate-text">0.8%</span> directly on each order of
+              the trading F1
             </div>
+          </div>
 
-            <div class="margin-bottom-base">
-                <div class="title">LEVEL 2</div>
-                <div class="margin-bottom-s">Get <span class="rate-text">0.8%</span> on the volume of system (system of F1)</div>
-                <div class="text-yellow">Commission amount will be returned after each week. <br>
-                    Condition: Mentor has to activate the trading volume equal to the amount of commssion</div>
-            </div>
-            <div class="upgrate-mentor">Upgraded Mentor</div>
-            <div class="title">Upgraded Mentor conditions</div>
-            <div class="margin-bottom-base">
-                <span>Total personal volume: $100.000</span>
-                <br>
-                <span>Total F1 trading volume: $200.000</span>
-            </div>
-
-            <div class="title margin-bottom-s">Conditions for upgrading Mentor:</div>
+          <div class="margin-bottom-base">
+            <div class="title">LEVEL 2</div>
             <div class="margin-bottom-s">
-                <span>Personal monthly volume: $3.000</span>
+              Get <span class="rate-text">0.8%</span> on the volume of system
+              (system of F1)
             </div>
-            <div class="text-yellow">Note: Only missed once a year</div>
-            <div class="line"></div>
-            <div class="title">BONUS COMMISSION</div>
-            <div>Get <span class="rate-text">0.15%</span> F1 trading volume when reach:</div>
-            <div class="margin-bottom-base">
-                <div class="bonus-level">
-                    <div>Level 1: $100.000</div>
-                    <div>Level 2: $200.000</div>
-                    <div>Level 3: $500.000</div>
-                </div>
-                <div class="bonus-level">
-                    <div>Level 4: $1.000.000</div>
-                    <div>Level 5: $2.000.000</div>
-                    <div>Level 6: $5.000.000</div>
-                </div>
+            <div class="text-yellow">
+              Commission amount will be returned after each week. <br />
+              Condition: Mentor has to activate the trading volume equal to the
+              amount of commssion
             </div>
-            <div>Get <span class="rate-text">0.05% </span> for the nearest when the upgraded mentor reaches
-                these milestones</div>
-        </div>
-    </div>
-</body>
+          </div>
+          <div class="upgrate-mentor">Upgraded Mentor</div>
+          <div class="title">Upgraded Mentor conditions</div>
+          <div class="margin-bottom-base">
+            <span>Total personal volume: $100.000</span>
+            <br />
+            <span>Total F1 trading volume: $200.000</span>
+          </div>
 
+          <div class="title margin-bottom-s">
+            Conditions for upgrading Mentor:
+          </div>
+          <div class="margin-bottom-s">
+            <span>Personal monthly volume: $3.000</span>
+          </div>
+          <div class="text-yellow">Note: Only missed once a year</div>
+          <div class="line"></div>
+          <div class="title">BONUS COMMISSION</div>
+          <div>
+            Get <span class="rate-text">0.15%</span> F1 trading volume when
+            reach:
+          </div>
+          <div class="margin-bottom-base">
+            <div class="bonus-level">
+              <div>Level 1: $100.000</div>
+              <div>Level 2: $200.000</div>
+              <div>Level 3: $500.000</div>
+            </div>
+            <div class="bonus-level">
+              <div>Level 4: $1.000.000</div>
+              <div>Level 5: $2.000.000</div>
+              <div>Level 6: $5.000.000</div>
+            </div>
+          </div>
+          <div>
+            Get <span class="rate-text">0.05% </span> for the nearest when the
+            upgraded mentor reaches these milestones
+          </div>
+        </div>
+
+        <div class="policy-wrapper policy-mentor hidden">
+          <div class="text-center">
+            <div>
+              Get <span class="rate-text">1.5%</span> on each order of the
+              trading F1
+            </div>
+            <div class="text-yellow">
+              Note: Trader only get commssion from F1
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var btnTrader = document.querySelector(".btn-trader");
+      var btnMentor = document.querySelector(".btn-mentor");
+      var policyTrader = document.querySelector(".policy-trader");
+      var policyMentor = document.querySelector(".policy-mentor");
+
+      btnTrader.addEventListener("click", function () {
+        policyTrader.classList.remove("hidden");
+        policyMentor.classList.add("hidden");
+      });
+
+      btnMentor.addEventListener("click", function () {
+        policyTrader.classList.add("hidden");
+        policyMentor.classList.remove("hidden");
+      });
+
+      document.querySelector(".policy-mentor").style.width =
+        document.querySelector(".policy-trader").offsetWidth + "px";
+    </script>
+  </body>
 </html>

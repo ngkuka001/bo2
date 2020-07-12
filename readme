@@ -1,12 +1,2 @@
-Version: 1.0
-//Referral Page
-_milestones are reached: 
-    .progress-item => aria-active="true"
-    .btn-reward => .active
-
-_milestones are reached > 5:
-    .progress-space => .over
-
-//Progress referral on Mobile
-.progress-wrapper => .old(nth child: 1,3,5) || .event(nth child: 2,4)
-                  =>  cn-r="true" cn-l="true" => corner left & corner right: true or false
+Referral Page
+.progress-container => data-milestone=5000000 (input data) => other element auto add class "active".

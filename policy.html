@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="menu-header">
-        <div class="menu-item">REFERRAL</div>
-      </div>
-      <div class="policy-header">Commission Policy</div>
-      <div class="text-center">
-        <button class="btn-policy btn-trader">Trader</button>
-        <button class="btn-policy btn-mentor">Mentor</button>
-      </div>
-      <div class="policy-container">
-        <div class="policy-wrapper policy-trader">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="menu-header">
+      <div class="menu-item">REFERRAL</div>
+    </div>
+    <div class="policy-header">Commission Policy</div>
+    <div class="text-center">
+      <button class="btn-policy btn-trader">Trader</button>
+      <button class="btn-policy btn-mentor">Mentor</button>
+    </div>
+    <div class="policy-container">
+      <div class="policy-wrapper policy-trader active" data-slide="1">
+        <div class="arr-prev"></div>
+        <div class="policy-trader-content">
           <div class="margin-bottom-base">
             <div class="title">LEVEL 1</div>
             <div>
@@ -77,22 +80,70 @@
             upgraded mentor reaches these milestones
           </div>
         </div>
-
-        <div class="policy-wrapper policy-mentor hidden">
-          <div class="text-center">
-            <div>
-              Get <span class="rate-text">1.5%</span> on each order of the
-              trading F1
-            </div>
-            <div class="text-yellow">
-              Note: Trader only get commssion from F1
-            </div>
+        <div class="policy-trader-flow">
+          <div class="circle-wrapper">
+            <img class="image" src="./image/avatar.png" alt="">
+            <span>Trader</span>
+          </div>
+          <div class='line-arr'>
+            <span class="line-rate-text">1.5%</span>
+            <div class="triangle-right"></div>
+          </div>
+          <div class="circle-wrapper">
+            <img class="image" src="./image/avatar.png" alt="">
+            <span>F1</span>
           </div>
         </div>
+        <div class="arr-next"></div>
       </div>
 
-      <!-- Image -->
-      <div></div>
+
+      <div class="policy-wrapper policy-mentor" data-slide="1">
+        <div class="arr-prev"></div>
+        <div class="policy-mentor-content text-center">
+          <div>
+            Get <span class="rate-text">1.5%</span> on each order of the
+            trading F1
+          </div>
+          <div class="text-yellow">
+            Note: Trader only get commssion from F1
+          </div>
+        </div>
+        <!-- Mentor flow -->
+        <div class="policy-mentor-flow">
+          <div class="flow-item">
+            <div class="circle-wrapper">
+              <img class="image" src="./image/avatar.png" alt="">
+              <span>Mentor</span>
+            </div>
+            <div class='line-arr'>
+              <span>2.3%</span>
+              <div class="line-wrapper">
+                <div class="line-space"></div>
+                <div class="triangle-bottom"></div>
+              </div>
+            </div>
+
+            <div class="circle-wrapper">
+              <img class="image" src="./image/avatar.png" alt="">
+              <span>F1</span>
+            </div>
+
+            <div class="circle-wrapper last">
+              <img class="image" src="./image/avatar.png" alt="">
+              <div class="text-center">F1's <br> System</span>
+              </div>
+              <div class="flow-arr">
+                <span class="flow-arr-rate">0.8%</span>
+                <div class="triangle-left"></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="arr-next"></div>
+      </div>
+
     </div>
     <script>
       var btnTrader = document.querySelector(".btn-trader");
@@ -101,17 +152,40 @@
       var policyMentor = document.querySelector(".policy-mentor");
 
       btnTrader.addEventListener("click", function () {
-        policyTrader.classList.remove("hidden");
-        policyMentor.classList.add("hidden");
+        policyTrader.classList.add("active");
+        policyMentor.classList.remove("active");
       });
 
       btnMentor.addEventListener("click", function () {
-        policyTrader.classList.add("hidden");
-        policyMentor.classList.remove("hidden");
+        policyTrader.classList.remove("active");
+        policyMentor.classList.add("active");
       });
 
-      document.querySelector(".policy-mentor").style.width =
-        document.querySelector(".policy-trader").offsetWidth + "px";
+      policyMentor.style.width = policyTrader.offsetWidth + "px";
+      policyTrader.style.width = policyTrader.offsetWidth + "px";
+
+
+      //Handle slide
+      var arrNext = document.querySelectorAll('.arr-next');
+      var arrPrev = document.querySelectorAll('.arr-prev');
+      arrNext.forEach(element => {
+        console.log(element);
+        element.addEventListener('click', function () {
+          var parent = this.closest('.policy-wrapper');
+          console.log(parent);
+          parent.dataset.slide = parseInt(parent.dataset.slide) + 1;
+        })
+      });
+
+
+      arrPrev.forEach(element => {
+        element.addEventListener('click', function () {
+          var parent = this.closest('.policy-wrapper');
+          parent.dataset.slide = parseInt(parent.dataset.slide) - 1;
+        })
+      });
+
     </script>
-  </body>
+</body>
+
 </html>

@@ -176,26 +176,29 @@
         <!-- Modal -->
         <div id="myModal" class="modal hidden">
             <div class="modal-content">
-                <div class="modal-title">
-                    <img src="./image/icon-success.png" class="icon-success">
-                    <span>Congratulation</span>
+                <img class="modal-image" src="./image/coin.png" alt="">
+                <div class="modal-title text-center">
+                    <div>
+                        <img src="./image/icon-success.png" class="icon-success">
+                        <span>Congratulation</span>
+                    </div>
+                    <div class="modal-reward">+ $750.00</div>
                 </div>
-                <p>Congratulations on your reward. Submit a support request via support@blockoption.io so we can best
-                    assist you. </p>
-                <div class="text-center">
+                <span class="btn-close">X</span>
+                <!-- <div class="text-center">
                     <button class="btn-complete">Complete</button>
-                </div>
+                </div> -->
             </div>
         </div>
         <script>
             const offsetMilestone = 500000;
             const maxMilestone = 5000000;
             var modal = document.getElementById("myModal");
-            var btnComplete = document.querySelector(".btn-complete");
+            var btnClose = document.querySelector(".btn-close");
             var btnRewardDesktop = document.querySelectorAll('.desktop .progress-item .btn-reward');
             var btnRewardPhone = document.querySelectorAll('.phone .progress-item .btn-reward');
-            if (btnComplete) {
-                btnComplete.addEventListener('click', function () {
+            if (btnClose) {
+                btnClose.addEventListener('click', function () {
                     modal.classList.add('hidden')
                 })
             }
@@ -246,7 +249,7 @@
                 var progressSpace = [...document.querySelectorAll('.phone .progress-space')];
                 var progressSpaceActives = progressSpace.slice(0, (rateQuantity - 1));
                 progressSpaceActives.map(item => item.classList.add('active'))
-                
+
                 // High light corner
                 var progressWrapper = [...document.querySelectorAll('.phone .progress-wrapper')];
                 console.log(rateQuantity)
@@ -324,7 +327,7 @@
                 })
             }
             milestoneDesktop();
-           
+
 
         </script>
 </body>

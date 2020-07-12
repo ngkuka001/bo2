@@ -89,6 +89,8 @@ button {
   height: var(--size-progress);
 }
 
+.progress-wrapper .first-space,
+.progress-wrapper .last-space,
 .progress-wrapper .progress-item {
   flex: 1;
   color: var(--color-text-disable);
@@ -102,10 +104,44 @@ button {
   font-weight: bold;
 }
 
+.progress-rate {
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-right: none;
+  border-left: none;
+}
+
+.progress-rate.active:not(.over) .rate {
+  background: var(--color-background-progress);
+  height: 32px;
+  float: right;
+  width: 100%;
+}
+
+.progress-wrapper.old .rate,
+.progress-top .progress-rate .rate {
+  float: left;
+}
+
+.progress-wrapper.event .rate,
+.progress-bottom .progress-rate .rate {
+  float: right;
+}
+
+.progress-rate.active .rate {
+  background: var(--color-background-progress);
+  height: 32px;
+}
+
+
 .progress-wrapper .progress-item-corner {
   width: 34px;
   border: 1px solid var(--color-border);
   border-left: none;
+  
+}
+
+.progress-wrapper .progress-item-corner.active {
   background-color: var(--color-background-progress);
 }
 
@@ -126,7 +162,7 @@ button {
   border-radius: 3px;
   background-color: var(--color-button-background-secondary);
   color: var(--color-text-primary);
-  width: fit-content;
+  width: max-content;
   padding: 5px 10px;
 }
 
@@ -140,11 +176,11 @@ button {
   transform: translate(-50%, 0%);
 }
 
-.progress-item[aria-active="true"] .btn-reward.active {
+.progress-item.active .btn-reward.active {
   background-color: var(--color-button-background-primary) !important;
 }
 
-.desktop .progress-wrapper:first-child .progress-item:first-child {
+.desktop .progress-wrapper .first-space {
   border-radius: 50px 0 0 50px;
   border-left: 1px solid var(--color-border);
 }
@@ -159,7 +195,9 @@ button {
   flex-direction: row-reverse;
 }
 
-.progress-wrapper .progress-item[aria-active="true"] {
+.progress-wrapper .first-space.active,
+.progress-wrapper .last-space.active,
+.progress-wrapper .progress-item.active {
   background: var(--color-background-progress);
   color: var(--color-text-active);
 }
@@ -180,7 +218,7 @@ button {
   background: var(--color-border);
 }
 
-.progress-space.over::before {
+.progress-space.active::before {
   content: "";
   width: var(--size-progress);
   height: 100%;
@@ -189,7 +227,7 @@ button {
   background: var(--color-background-progress);
 }
 
-/* Mobile Progress BLock*/
+/* phone Progress BLock*/
 
 .progress-space-left {
   border-right: none;
@@ -200,11 +238,11 @@ button {
   left: var(--size-progress);
 }
 
-.progress-space-left.over::before {
+.progress-space-left.active::before {
   left: 0;
 }
 
-.mobile .progress-wrapper.old:not(:last-child)::after {
+.phone .progress-wrapper.old:not(:last-child)::after {
   width: var(--size-progress);
   border: 1px solid var(--color-border);
   border-left: none;
@@ -213,11 +251,12 @@ button {
   content: "";
 }
 
-.mobile .progress-wrapper.old:not(:last-child)[cn-r="true"]::after {
+.phone .progress-wrapper.old.corner-r:not(:last-child)::after,
+.phone .progress-wrapper.old.corner-l-r:not(:last-child)::after {
   background-color: var(--color-background-progress);
 }
 
-.mobile .progress-wrapper.old:last-child::after {
+.phone .progress-wrapper.old:last-child::after {
   width: var(--size-progress);
   border: 1px solid var(--color-border);
   border-left: none;
@@ -225,11 +264,12 @@ button {
   content: "";
 }
 
-.mobile .progress-wrapper.old:last-child[cn-r="true"]::after {
+.phone .progress-wrapper.old.corner-r:last-child::after,
+.phone .progress-wrapper.old.corner-l-r:last-child::after {
     background-color: var(--color-background-progress);
 }
 
-.mobile .progress-wrapper.old:not(:first-child)::before {
+.phone .progress-wrapper.old:not(:first-child)::before {
   width: var(--size-progress);
   border: 1px solid var(--color-border);
   border-right: none;
@@ -238,11 +278,12 @@ button {
   content: "";
 }
 
-.mobile .progress-wrapper.old:not(:first-child)[cn-l="true"]::before {
+.phone .progress-wrapper.old.corner-l:not(:first-child)::before,
+.phone .progress-wrapper.old.corner-l-r:not(:first-child)::before {
   background-color: var(--color-background-progress);
 }
 
-.mobile .progress-wrapper.old:first-child::before {
+.phone .progress-wrapper.old:first-child::before {
   width: var(--size-progress);
   border: 1px solid var(--color-border);
   border-right: none;
@@ -250,21 +291,11 @@ button {
   border-radius: 15px 0 0 15px;
   content: "";
 }
-
-.mobile .progress-wrapper.event::after {
-  width: var(--size-progress);
-  border: 1px solid var(--color-border);
-  border-left: none;
-  border-top: none;
-  border-radius: 0 0 15px 0;
-  content: "";
+.phone .progress-wrapper.event {
+  flex-direction: row-reverse;
 }
 
-.mobile .progress-wrapper.event[cn-r="true"]::after {
-  background-color: var(--color-background-progress);
-}
-
-.mobile .progress-wrapper.event::before {
+.phone .progress-wrapper.event::after {
   width: var(--size-progress);
   border: 1px solid var(--color-border);
   border-right: none;
@@ -273,24 +304,39 @@ button {
   content: "";
 }
 
-.mobile .progress-wrapper.event[cn-l="true"]::before {
+.phone .progress-wrapper.event.corner-l::after,
+.phone .progress-wrapper.event.corner-l-r::after {
   background-color: var(--color-background-progress);
 }
 
-.mobile .progress-wrapper .progress-item .btn-reward {
+.phone .progress-wrapper.event::before {
+  width: var(--size-progress);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-left: none;
+  border-radius: 0 0 15px 0;
+  content: "";
+}
+
+.phone .progress-wrapper.event.corner-r::before,
+.phone .progress-wrapper.event.corner-l-r::before {
+  background-color: var(--color-background-progress);
+}
+
+.phone .progress-wrapper .progress-item .btn-reward {
     left: unset;
     top: -34px;
 }
 
-.mobile .progress-space {
+.phone .progress-space {
     height: 70px;
 }
 
-.mobile {
+.phone {
     display: none;
 }
 
-/* Mobile Progress BLock*/
+/* phone Progress BLock*/
 /* Commission Page */
 
 /* Header */
@@ -433,7 +479,7 @@ button {
 
 /* Media query */
 @media only screen and (max-width: 992px) {
-    .mobile {
+    .phone {
         display: block;
     }
     .desktop {

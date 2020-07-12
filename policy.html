@@ -15,7 +15,7 @@
     </div>
     <div class="policy-header">Commission Policy</div>
     <div class="text-center">
-      <button class="btn-policy btn-trader">Trader</button>
+      <button class="btn-policy btn-trader active">Trader</button>
       <button class="btn-policy btn-mentor">Mentor</button>
     </div>
     <div class="policy-container">
@@ -82,7 +82,7 @@
         </div>
         <div class="policy-trader-flow">
           <div class="circle-wrapper">
-            <img class="image" src="./image/avatar.png" alt="">
+            <img class="image" src="./image/mentor-icon.png" alt="">
             <span>Trader</span>
           </div>
           <div class='line-arr'>
@@ -90,13 +90,16 @@
             <div class="triangle-right"></div>
           </div>
           <div class="circle-wrapper">
-            <img class="image" src="./image/avatar.png" alt="">
+            <img class="image" src="./image/f1-icon.png" alt="">
             <span>F1</span>
           </div>
         </div>
         <div class="arr-next"></div>
+        <div class="policy-dot text-center">
+          <span class="dot dot-prev active"></span>
+          <span class="dot dot-next"></span>
+        </div>
       </div>
-
 
       <div class="policy-wrapper policy-mentor" data-slide="1">
         <div class="arr-prev"></div>
@@ -113,7 +116,7 @@
         <div class="policy-mentor-flow">
           <div class="flow-item">
             <div class="circle-wrapper">
-              <img class="image" src="./image/avatar.png" alt="">
+              <img class="image" src="./image/mentor-icon.png" alt="">
               <span>Mentor</span>
             </div>
             <div class='line-arr'>
@@ -125,14 +128,15 @@
             </div>
 
             <div class="circle-wrapper">
-              <img class="image" src="./image/avatar.png" alt="">
+              <img class="image" src="./image/f1-icon.png" alt="">
               <span>F1</span>
             </div>
 
             <div class="circle-wrapper last">
-              <img class="image" src="./image/avatar.png" alt="">
-              <div class="text-center">F1's <br> System</span>
-              </div>
+              <img class="image" src="./image/system-icon.png" alt="">
+              <span class="text-center">
+                F1's <br> System
+              </span>
               <div class="flow-arr">
                 <span class="flow-arr-rate">0.8%</span>
                 <div class="triangle-left"></div>
@@ -142,6 +146,10 @@
           </div>
         </div>
         <div class="arr-next"></div>
+        <div class="policy-dot text-center">
+          <span class="dot dot-prev active"></span>
+          <span class="dot dot-next"></span>
+        </div>
       </div>
 
     </div>
@@ -152,11 +160,15 @@
       var policyMentor = document.querySelector(".policy-mentor");
 
       btnTrader.addEventListener("click", function () {
+        btnTrader.classList.add('active');
+        btnMentor.classList.remove('active');
         policyTrader.classList.add("active");
         policyMentor.classList.remove("active");
       });
 
       btnMentor.addEventListener("click", function () {
+        btnTrader.classList.remove('active');
+        btnMentor.classList.add('active');
         policyTrader.classList.remove("active");
         policyMentor.classList.add("active");
       });
@@ -168,8 +180,11 @@
       //Handle slide
       var arrNext = document.querySelectorAll('.arr-next');
       var arrPrev = document.querySelectorAll('.arr-prev');
-      arrNext.forEach(element => {
-        console.log(element);
+
+      var dotNext = document.querySelectorAll('.dot-next');
+      var dotPrev = document.querySelectorAll('.dot-prev');
+
+      [...dotNext, ...arrNext].forEach(element => {
         element.addEventListener('click', function () {
           var parent = this.closest('.policy-wrapper');
           console.log(parent);
@@ -178,7 +193,7 @@
       });
 
 
-      arrPrev.forEach(element => {
+      [...dotPrev, ...arrPrev].forEach(element => {
         element.addEventListener('click', function () {
           var parent = this.closest('.policy-wrapper');
           parent.dataset.slide = parseInt(parent.dataset.slide) - 1;
